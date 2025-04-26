@@ -1,4 +1,4 @@
-package com.checkers.checkers.controller;
+package com.checkers.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
