@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value = {"","/","/home"})
+    @RequestMapping(value = {"","/","/signup"})
     public String displayHomePage(Model model) {
         model.addAttribute("username", "Bobb Doe");
-        return "home.html";
+        return "signup.html";
     }
 
 }
