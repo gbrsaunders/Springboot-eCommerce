@@ -15,5 +15,8 @@ public class Test {
         Person person3 = context.getBean(Person.class);
         System.out.println(person3);
         System.out.println(person3.getGameStats().getGameStatsServices().getLeague());
+        Person person4 = context.getBean(Person.class);
+        System.out.println(person4);
+        System.out.println(person4.getGameStats().getGameStatsServices().getLeague());
     }
 }
