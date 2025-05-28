@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <title>Bob</title>
 </head>
 <body>
+<div th:replace="header :: header"></div>
+<div style="text-align: center;">
+    <br>
+    <h1>Sign Up</h1>
+    <form th:action="@{/checkLogIn}" method="post" class="signin-form">
+        <h4 class="calcHeading">Username:</h4>
+        <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username"/><br>
 
+        <h4 class="calcHeading">Password:</h4>
+        <input class="inputBox" name="password" type="text" id="password"/><br>
+
+        <h4 class="calcHeading">Email:</h4>
+        <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email"/><br>
+
+        <input class="inputBox" type="submit" value="Submit"/>
+    </form>
+</div>
+<!----<h1 th:text="'Hello, '+ ${username} + '!!! Welcome to Eazy School.'"></h1>--->
+<script src="../static/assets/js/jquery-3.7.1.min.js"></script>
 </body>
+<div th:replace="footer :: footer"></div>
 </html>

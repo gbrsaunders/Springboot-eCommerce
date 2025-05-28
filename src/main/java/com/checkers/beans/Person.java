@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Person {
-    private String name;
+    private String username;
     private final GameStats gameStats;
     @Autowired
     public Person(GameStats gameStats) {

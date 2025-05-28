@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.SignUp;
+import com.example.demo.model.Account;
 import com.example.demo.service.SignUpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class SignUpController {
-    private static Logger log = LoggerFactory.getLogger(SignUpController.class);
 
     private final SignUpService signUpService;
 
@@ -26,12 +25,12 @@ public class SignUpController {
     }
 
     @RequestMapping(value = {"/signup"})
-    public String displayHomePage() {
+    public String displaySignUpPage() {
         return "signup.html";
     }
     @RequestMapping(value = "/saveSignUp", method = POST)
-    public ModelAndView saveSignUp(SignUp signUp){
-        signUpService.saveSignUpInfo(signUp);
+    public ModelAndView saveSignUp(Account account){
+        signUpService.saveSignUpInfo(account);
         return new ModelAndView("redirect:/signup");
     }
 }

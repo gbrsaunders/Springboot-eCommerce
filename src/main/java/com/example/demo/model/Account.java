@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class SignUp {
+public class Account {
     private String username;
     private String password;
     private String email;
