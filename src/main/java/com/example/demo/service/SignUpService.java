@@ -13,48 +13,39 @@ public class SignUpService {
 
     private static Logger log = LoggerFactory.getLogger(SignUpService.class);
 
-    public void saveSignUpInfo(Account account){
-
-        boolean isSaved = true;
+    public String saveSignUpInfo(Account account) {
         if (account.getPassword() == null || account.getPassword().isEmpty() || account.getUsername() == null || account.getUsername().isEmpty() || account.getEmail() == null || account.getEmail().isEmpty()) {
-            log.info("SignUp info is empty.");
-            isSaved = false;
+            log.error("Fields are empty.");
+            return "Fields are empty.";
         }
         if (account.getPassword().length() < 3 || account.getUsername().length() < 3) {
-            log.info("Password length should be at least 3 characters.");
-            isSaved = false;
+            log.error("Password length should be at least 3 characters.");
+            return "Password length should be at least 3 characters.";
         }
-        if (!account.getEmail().contains("@")){
-            log.info("Email address should be a valid email address.");
-            isSaved = false;
+        if (!account.getEmail().contains("@") && !account.getEmail().contains(".")) {
+            log.error("Email address should be a valid email address.");
+            return "Email address should be a valid email address.";
         }
-        for(Account acc : Data.getAccountList()){
-            if (acc == null){
+        for (Account acc : Data.getAccountList()) {
+            if (acc == null) {
                 break;
-            }
-            else if(acc.getUsername().equals(account.getUsername())){
+            } else if (acc.getUsername().equals(account.getUsername())) {
                 log.info("Username already exists.");
-                isSaved = false;
-                break;
-            }
-            else if(acc.getEmail().equals(account.getEmail())) {
+                return "Username already exists.";
+            } else if (acc.getEmail().equals(account.getEmail())) {
                 log.info("Email address already exists.");
-                isSaved = false;
-                break;
+                return "Email address already exists.";
             }
         }
-        if(isSaved){
-            for (int i = 0; i < Data.getAccountList().length; i++) {
-                if(Data.getAccountList()[i] == null){
-                    Data.getAccountList()[i] = account;
-                    log.info("Account saved successfully.");
-                    break;
-                }
+        for (int i = 0; i < Data.getAccountList().length; i++) {
+            if (Data.getAccountList()[i] == null) {
+                Data.getAccountList()[i] = account;
+                log.info("Account saved successfully.");
+                System.out.println(account);
+                return "Account saved successfully";
+            }
         }
-        }
-        else{
-            log.error("Account not saved.");
-        }
-
+    return "Account saved unsuccessfully";
     }
+
 }

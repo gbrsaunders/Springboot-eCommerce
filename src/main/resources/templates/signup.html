@@ -11,6 +11,7 @@
 <div style="text-align: center;">
     <br>
     <h1>Sign Up</h1>
+    <h4 th:text="${errorMessage}" style="color: #C44900"></h4>
     <form th:action="@{/saveSignUp}" method="post" class="signin-form">
     <h4 class="calcHeading">Username:</h4>
     <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username"/><br>
@@ -20,7 +21,6 @@
     
     <h4 class="calcHeading">Email:</h4>
     <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email"/><br>
-    
     <input class="inputBox" type="submit" value="Submit"/>
 </form>
 </div>
