@@ -4,6 +4,15 @@ public class Account {
     private String username;
     private String password;
     private String email;
+    private int points = 0;
+    private boolean loggedin = false;
+
+    public Account(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.loggedin = false;
+    }
 
     public String getUsername() {
         return username;
@@ -31,5 +40,33 @@ public class Account {
     @Override
     public String toString() {
     return "Signing Up: Username: " + username + " || Password: " + password + " || Email: " + email;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    public Account checkData(){
+        Account[] accountList = Data.getAccountList();
+        for(Account acc : accountList){
+            if (acc == null){
+                return null;
+            }
+            if (this.getUsername().equals(acc.getUsername()) && this.getPassword().equals(acc.getPassword())){
+                return acc;
+            }
+        }
+        return null;
+    }
+
+    public boolean isLoggedin() {
+        return loggedin;
+    }
+
+    public void setLoggedin(boolean loggedin) {
+        this.loggedin = loggedin;
     }
 }

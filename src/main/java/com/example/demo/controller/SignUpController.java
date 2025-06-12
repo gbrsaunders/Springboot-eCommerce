@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -29,8 +30,9 @@ public class SignUpController {
         return "signup.html";
     }
     @RequestMapping(value = "/saveSignUp", method = POST)
-    public ModelAndView saveSignUp(Account account){
+    public ModelAndView saveSignUp(Account account, RedirectAttributes redirectAttributes) {
         String errorMessage = signUpService.saveSignUpInfo(account);
-        return new ModelAndView("redirect:/signup", "errorMessage", errorMessage);
+        redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+        return new ModelAndView("redirect:/signup");
     }
 }

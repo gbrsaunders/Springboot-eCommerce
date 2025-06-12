@@ -15,19 +15,13 @@ public class LogInService {
             log.error("Username or password are empty");
             return "Username or password are empty.";
         }
-        for(Account acc : accountList){
-            if (acc == null){
-                log.error("Account is not found");
-                return "Account is not found.";
-            }
-            if (accountEntered.getUsername().equals(acc.getUsername()) && accountEntered.getPassword().equals(acc.getPassword())){
-                System.out.println("Logged in");
-                return null;
-            }
-
+        if(accountEntered.checkData() != null){
+            return null;
         }
-
-        return "An error has occured.";
+        else{
+            return "Account not found or doesn't exists";
+        }
     }
+
 }
 
