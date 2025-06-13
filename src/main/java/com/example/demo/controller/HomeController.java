@@ -15,9 +15,7 @@ public class HomeController {
         Account currentAccount = (Account) model.asMap().get("currentAccount");
         System.out.println("Logged in / " + currentAccount.isLoggedin());
         System.out.println(currentAccount);
-        model.addAttribute("displayUsername", currentAccount.getUsername());
-        model.addAttribute("displayEmail", currentAccount.getEmail());
-        model.addAttribute("displayPoints", currentAccount.getPoints());
+        model.addAttribute("currentAccount", currentAccount);
         return "home.html";
     }
 

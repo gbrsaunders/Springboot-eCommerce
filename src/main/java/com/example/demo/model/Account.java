@@ -39,7 +39,7 @@ public class Account {
     }
     @Override
     public String toString() {
-    return "Signing Up: Username: " + username + " || Password: " + password + " || Email: " + email;
+    return "Username: " + username + " || Password: " + password + " || Email: " + email;
     }
 
     public int getPoints() {

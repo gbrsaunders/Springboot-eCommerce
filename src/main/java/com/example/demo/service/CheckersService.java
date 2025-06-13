@@ -9,8 +9,12 @@ public class CheckersService {
     public String requestMatch(Account account) {
         Account[] AccountList = Data.getAccountList();
         for(Account acc : AccountList) {
-            if(acc.isLoggedin()){
-                return "" + acc;
+            if(acc.isLoggedin() && acc.getUsername() != null){
+                System.out.println(acc.getUsername() + "is logged in");
+                if (!acc.getUsername().equals(account.getUsername())) {
+                    System.out.println(account.getUsername() + " | "  + acc.getUsername());
+                    return acc + " is eligible";
+                }
             }
         }
         return "Not found";

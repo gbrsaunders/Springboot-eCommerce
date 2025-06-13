@@ -11,12 +11,14 @@
 <div style="text-align: center;">
     <br>
     <h1>Logged In</h1>
-    <h4 th:text="${displayUsername}"></h4>
-    <h4 th:text="${displayEmail}"></h4>
-    <h4 th:text="${displayPoints}"></h4>
-    <form th:action="@{/requestMatch}" th:method="post">
+    <h4 th:text="${currentAccount.username}"></h4>
+    <h4 th:text="${currentAccount.email}"></h4>
+    <h4 th:text="${currentAccount.points}"></h4>
+    <form th:object="${currentAccount}" th:action="@{/requestMatch}" method="post">
         <button type="submit" class="button">Test</button>
+        <input type="hidden" name="currentAccount">
     </form>
+
 </div>
 <script src="../static/assets/js/jquery-3.7.1.min.js"></script>
 </body>

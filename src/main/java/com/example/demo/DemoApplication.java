@@ -12,6 +12,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
         Account[] AccountList = Data.getAccountList();
         AccountList[0] = new Account("Bob","Bob","Bob@gmail.com");
+        AccountList[1] = new Account("Jeff","Jeff","Jeff@gmail.com");
         Data.setAccountList(AccountList);
     }
 
