@@ -6,6 +6,7 @@ public class Account {
     private String email;
     private int points = 0;
     private boolean loggedin = false;
+    private boolean readyMatch = false;
 
     public Account(String username, String password, String email) {
         this.username = username;
@@ -68,5 +69,13 @@ public class Account {
 
     public void setLoggedin(boolean loggedin) {
         this.loggedin = loggedin;
+    }
+
+    public boolean isReadyMatch() {
+        return readyMatch;
+    }
+
+    public void setReadyMatch(boolean readyMatch) {
+        this.readyMatch = readyMatch;
     }
 }

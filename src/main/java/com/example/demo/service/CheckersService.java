@@ -6,17 +6,27 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CheckersService {
-    public String requestMatch(Account account) {
-        Account[] AccountList = Data.getAccountList();
-        for(Account acc : AccountList) {
-            if(acc.isLoggedin() && acc.getUsername() != null){
-                System.out.println(acc.getUsername() + "is logged in");
-                if (!acc.getUsername().equals(account.getUsername())) {
-                    System.out.println(account.getUsername() + " | "  + acc.getUsername());
-                    return acc + " is eligible";
+    public Account requestMatch(Account account) {
+        if (account.isReadyMatch()) {
+            account.setReadyMatch(false);
+            System.out.println(account.getUsername() + " is not ready.");
+        } else {
+            account.setReadyMatch(true);
+            Account[] AccountList = Data.getAccountList();
+            System.out.println(account.getUsername() + " is ready.");
+            for (Account acc : AccountList) {
+                if (acc == null){
+                    continue;
+                }
+                if (acc.isReadyMatch() && acc.getUsername() != null) {
+                    if (!acc.getUsername().equals(account.getUsername())) {
+                        System.out.println(account.getUsername() + " | " + acc.getUsername());
+                        return acc;
+                    }
                 }
             }
+            return null;
         }
-        return "Not found";
+        return null;
     }
 }

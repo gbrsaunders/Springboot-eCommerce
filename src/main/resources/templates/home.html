@@ -14,9 +14,9 @@
     <h4 th:text="${currentAccount.username}"></h4>
     <h4 th:text="${currentAccount.email}"></h4>
     <h4 th:text="${currentAccount.points}"></h4>
-    <form th:object="${currentAccount}" th:action="@{/requestMatch}" method="post">
+    <form th:action="@{/requestMatch}" method="post">
         <button type="submit" class="button">Test</button>
-        <input type="hidden" name="currentAccount">
+        <input type="hidden" th:field="${currentAccount.username}" name="username"/>
     </form>
 
 </div>
