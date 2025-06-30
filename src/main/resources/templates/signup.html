@@ -14,13 +14,13 @@
     <h4 th:text="${errorMessage}" style="color: #C44900"></h4>
     <form th:action="@{/saveSignUp}" method="post" class="signin-form">
     <h4 class="calcHeading">Username:</h4>
-    <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username"/><br>
-    
+    <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username" required = "required"/><br>
+
     <h4 class="calcHeading">Password:</h4>
-    <input class="inputBox" name="password" type="text" id="password"/><br>
+    <input class="inputBox" name="password" type="text" id="password"  required = "required"/><br>
     
     <h4 class="calcHeading">Email:</h4>
-    <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email"/><br>
+    <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email" required = "required"/><br>
     <input class="inputBox" type="submit" value="Submit"/>
 </form>
 </div>

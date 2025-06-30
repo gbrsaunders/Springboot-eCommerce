@@ -1,9 +1,23 @@
 package com.example.demo.model;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+@Data
 public class Account {
+
+    @NotBlank(message = "Username must not be blank")
+    @Size(min = 3, message = "Username must be at least 3 characters long")
     private String username;
+
+    @NotBlank(message = "Password must not be blank")
+    @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
+
+    @NotBlank(message = "Email must not be blank")
+    @Email(message = "Please provide a valid email address")
     private String email;
+
     private int points = 0;
     private boolean loggedin = false;
     private boolean readyMatch = false;
@@ -51,7 +65,7 @@ public class Account {
         this.points = points;
     }
     public Account checkData(){
-        Account[] accountList = Data.getAccountList();
+        Account[] accountList = Array.getAccountList();
         for(Account acc : accountList){
             if (acc == null){
                 return null;

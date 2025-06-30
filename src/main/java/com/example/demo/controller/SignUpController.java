@@ -26,7 +26,7 @@ public class SignUpController {
     }
 
     @RequestMapping(value = {"/signup"})
-    public String displaySignUpPage(@ModelAttribute("errorMessage") String errorMessage, Model model) {
+    public String displaySignUpPage(@ModelAttribute("errorMessage") String errorMessage) {
         return "signup.html";
     }
     @RequestMapping(value = "/saveSignUp", method = POST)

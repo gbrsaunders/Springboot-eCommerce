@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
-import com.checkers.beans.Person;
-import com.example.demo.controller.SignUpController;
-import com.example.demo.model.Data;
+import com.example.demo.model.Array;
 import com.example.demo.model.Account;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +12,7 @@ public class SignUpService {
     private static Logger log = LoggerFactory.getLogger(SignUpService.class);
 
     public String saveSignUpInfo(Account account) {
+
         if (account.getPassword() == null || account.getPassword().isEmpty() || account.getUsername() == null || account.getUsername().isEmpty() || account.getEmail() == null || account.getEmail().isEmpty()) {
             log.error("Fields are empty.");
             return "Fields are empty.";
@@ -26,7 +25,8 @@ public class SignUpService {
             log.error("Email address should be a valid email address.");
             return "Email address should be a valid email address.";
         }
-        for (Account acc : Data.getAccountList()) {
+
+        for (Account acc : Array.getAccountList()) {
             if (acc == null) {
                 break;
             } else if (acc.getUsername().equals(account.getUsername())) {
@@ -37,9 +37,9 @@ public class SignUpService {
                 return "Email address already exists.";
             }
         }
-        for (int i = 0; i < Data.getAccountList().length; i++) {
-            if (Data.getAccountList()[i] == null) {
-                Data.getAccountList()[i] = account;
+        for (int i = 0; i < Array.getAccountList().length; i++) {
+            if (Array.getAccountList()[i] == null) {
+                Array.getAccountList()[i] = account;
                 log.info("Account saved successfully.");
                 System.out.println(account);
                 return "Account saved successfully";
