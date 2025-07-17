@@ -29,8 +29,10 @@ public class SignUpController {
     public String displaySignUpPage(@ModelAttribute("errorMessage") String errorMessage) {
         return "signup.html";
     }
+
     @RequestMapping(value = "/saveSignUp", method = POST)
     public ModelAndView saveSignUp(Account account, RedirectAttributes redirectAttributes) {
+        account.setAccountType(Account.type.USER);
         String errorMessage = signUpService.saveSignUpInfo(account);
         redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
         return new ModelAndView("redirect:/signup");

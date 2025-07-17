@@ -9,18 +9,19 @@ import org.springframework.stereotype.Service;
 public class LogInService {
     private static Logger log = LoggerFactory.getLogger(LogInService.class);
 
-    public String checkLogIn(Account accountEntered){
-        Account[] accountList = Array.getAccountList();
+    public Account checkLogIn(Account accountEntered){
+        Account[] AccountList = Array.getAccountList();
         if (accountEntered.getUsername() == null | accountEntered.getPassword() == null){
             log.error("Username or password are empty");
-            return "Username or password are empty.";
-        }
-        if(accountEntered.checkData() != null){
             return null;
         }
-        else{
-            return "Account not found or doesn't exists";
+        for(Account account : AccountList){
+            if(account.getUsername().equals(accountEntered.getUsername()) && account.getPassword().equals(accountEntered.getPassword())){
+                return account;
+            }
         }
+        return null;
+
     }
 
 }

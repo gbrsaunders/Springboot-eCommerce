@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Account;
 import com.example.demo.service.LogInService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
+@Slf4j
 @Controller
 public class LogInController {
     private final LogInService logInService;
@@ -28,16 +29,22 @@ public class LogInController {
 
 
     @RequestMapping(value = "/checkLogIn", method = POST)
-    public String checkLogIn(Account account, RedirectAttributes redirectAttributes){
-        String errorMessage = logInService.checkLogIn(account);
-        Account currentAccount = account.checkData();
-        if (errorMessage != null) {
-            redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+    public String checkLogIn(Account account, RedirectAttributes redirectAttributes) {
+        Account currentAccount = logInService.checkLogIn(account);
+        if (currentAccount == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Username or password are incorrect.");
             return "redirect:/login";
-        } else {
-            currentAccount.setLoggedin(true);
+        } else if (currentAccount.getAccountType() == Account.type.USER) {
             redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+            currentAccount.setLoggedin(true);
             return "redirect:/home";
+        } else if (currentAccount.getAccountType() == Account.type.ADMIN) {
+            redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+            currentAccount.setLoggedin(true);
+            return "redirect:/admin";
         }
+        log.error("Very weird exception");
+        System.out.println(account.getAccountType());
+        return "redirect:/login";
     }
 }
