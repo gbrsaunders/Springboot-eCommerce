@@ -45,7 +45,8 @@ public class ShoppingController {
         redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
         return ("redirect:/shoppingCart");
         }
-
-
-
+    @RequestMapping(value = {"/addToCart"})
+    public String addToCart(@RequestParam int itemId) {
+        return "redirect:/signup";
+    }
 }

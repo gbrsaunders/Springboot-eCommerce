@@ -16,9 +16,8 @@ public class DemoApplication {
         Item[] SellingList = new Item[]{new Item("A phone", "Apple IPhone 5", 5, true, 10),new Item("A phone", "Apple IPhone 5", 5, true, 10),new Item("A phone", "Apple IPhone 5", 5, true, 10),new Item("A phone", "Apple IPhone 5", 5, true, 10),new Item("A phone", "Apple IPhone 5", 5, true, 10),new Item("A phone", "Apple IPhone 5", 5, true, 10)};
         AccountList[0] = new Account("Bob","Bob","Bob@gmail.com", Account.type.USER);
         AccountList[1] = new Account("Admin","Admin","Admin@gmail.com", Account.type.ADMIN);
-        AccountList[0].setShoppingList(ShoppingList);
-        AccountList[0].setSellingList(SellingList);
         Array.setAccountList(AccountList);
+        Array.setMarketplace(ShoppingList);
         System.out.println(AccountList[0].getAccountType());
 
     }
