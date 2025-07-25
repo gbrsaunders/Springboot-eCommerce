@@ -14,12 +14,16 @@
     <h1>Logged In</h1>
     <h4 th:text="${currentAccount.username}"></h4>
     <h4 th:text="${currentAccount.email}"></h4>
+    <form th:action="@{/checkMarketplace}" method="post">
+        <button type="submit" class="button">Marketplace</button>
+        <input type="hidden" th:field="${currentAccount.username}" name="username"/>
+    </form>
     <form th:action="@{/checkShopping}" method="post">
-        <button type="submit" class="button">Test</button>
+        <button type="submit" class="button">Shopping</button>
         <input type="hidden" th:field="${currentAccount.username}" name="username"/>
     </form>
     <form th:action="@{/checkSelling}" method="post">
-        <button type="submit" class="button">Test</button>
+        <button type="submit" class="button">Selling</button>
         <input type="hidden" th:field="${currentAccount.username}" name="username"/>
     </form>
 

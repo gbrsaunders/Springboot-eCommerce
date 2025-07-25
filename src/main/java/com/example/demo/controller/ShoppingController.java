@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Account;
 import com.example.demo.model.Array;
 import com.example.demo.model.Item;
+import com.example.demo.service.LogInService;
 import com.example.demo.service.ShoppingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,14 @@ import static com.example.demo.service.ShoppingService.listSplit;
 @Slf4j
 @Controller
 public class ShoppingController {
+    private final LogInService logInService;
+
+    public ShoppingController(LogInService logInService) {
+        this.logInService = logInService;
+    }
+
     @RequestMapping(value = {"/shoppingCart"})
-    public String displayLogInPage(Model model) {
-        Account currentAccount = (Account) model.asMap().get("currentAccount");
+    public String displayLogInPage(@ModelAttribute("currentAccount") Account currentAccount, Model model) {
         System.out.println("Logged in / " + currentAccount.isLoggedin());
         System.out.println(currentAccount);
         Item[] shoppingCartList = currentAccount.getShoppingList();
@@ -31,13 +37,7 @@ public class ShoppingController {
     }
     @RequestMapping(value = {"/checkShopping"})
     public String checkShopping(@RequestParam String username, RedirectAttributes redirectAttributes) {
-        Account currentAccount = null;
-        for(Account acc : Array.getAccountList()){
-            if(acc.getUsername().equals(username)){
-                currentAccount = acc;
-                break;
-            }
-        }
+        Account currentAccount = logInService.checkLogInUsername(username);
         if(currentAccount == null) {
             log.error("Account cannot be found for Shopping Cart");
             return "redirect:/login";
@@ -46,7 +46,40 @@ public class ShoppingController {
         return ("redirect:/shoppingCart");
         }
     @RequestMapping(value = {"/addToCart"})
-    public String addToCart(@RequestParam int itemId) {
-        return "redirect:/signup";
+    public String addToCart(@RequestParam int itemID, @RequestParam String username, RedirectAttributes redirectAttributes) {
+        Item chosenItem = null;
+        for(Item item : Array.getMarketplace()){
+          if(item == null){
+              log.error("Item cannot be found for Shopping Cart. Item ID: {}", itemID);
+              return ("redirect:/marketplace");
+          }
+          System.out.println("ItemID: " + item.ID + "Target ID: " + itemID);
+          if(item.ID == itemID){
+              chosenItem = item;
+              System.out.println("ItemID: " + itemID);
+              Account currentAccount = logInService.checkLogInUsername(username);
+              System.out.println(currentAccount);
+              if(currentAccount == null){
+                  log.error("Account cannot be found for Shopping Cart. Username: {}", username);
+                  return ("redirect:/marketplace");
+              }
+              else{
+                  Item[] shoppingCartList = currentAccount.getShoppingList();
+                  System.out.println(shoppingCartList.length);
+                  for(int i = 0; i < shoppingCartList.length; i++){
+                      System.out.println(i);
+                      if(shoppingCartList[i] == null){
+                          shoppingCartList[i] = chosenItem;
+                          currentAccount.setShoppingList(shoppingCartList);
+                          redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+                          System.out.println("AddToCart Username:" + currentAccount.getUsername());
+                          return ("redirect:/shoppingCart");
+                        }
+                  }
+
+              }
+          }
+        }
+        return null;
     }
 }

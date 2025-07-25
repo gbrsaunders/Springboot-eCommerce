@@ -223,3 +223,19 @@ h1[th\:text] {
     max-width: 100%;
     height: auto;
 }
+.cartButton {
+    text-align: center;
+    text-decoration: none;
+    background-color: #438d50;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0.7rem;
+    border-color: #438d50;
+    border-style: none;
+    transition: 0.3s;
+    width: 100%;
+}
+.cartButton:hover{
+    background-color: #3c8048;
+}
