@@ -30,10 +30,20 @@ public class ShoppingService {
 
      */
     public static List<List<Item>> listSplit(Item[] itemList) {
+        // Create a new list to store non-null items
+        List<Item> notNullItems = new ArrayList<>();
+
+        // Filter out null items
+        for (Item item : itemList) {
+            if (item != null) {
+                notNullItems.add(item);
+            }
+        }
+
         List<List<Item>> RowOf5 = new ArrayList<>();
-        for (int i = 0; i < itemList.length; i += 5) {
-            int end = Math.min(i + 5, itemList.length);
-            RowOf5.add(Arrays.asList(Arrays.copyOfRange(itemList, i, end)));
+        for (int i = 0; i < notNullItems.size(); i += 5) {
+            int end = Math.min(i + 5, notNullItems.size());
+            RowOf5.add(new ArrayList<>(notNullItems.subList(i, end)));
         }
         return RowOf5;
     }

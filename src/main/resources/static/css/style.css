@@ -239,3 +239,24 @@ h1[th\:text] {
 .cartButton:hover{
     background-color: #3c8048;
 }
+
+.imageOnLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imageText{
+    font-size: 20px;
+    padding-left: 20px;
+}
+.itemTitle{
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+.itemDescription{
+    font-size: .875rem;
+}
+.itemPrice{
+    font-size: 1.5rem;
+    line-height: 1.33;
+}

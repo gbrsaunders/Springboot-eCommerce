@@ -11,14 +11,16 @@ public class Item {
     public int stock;
     public boolean onSale;
     public int price;
+    public String image;
 
-    public Item(String name, String description, int stock, boolean onSale, int price) {
+    public Item(String name, String description, int stock, int price) {
         this.ID = total + 1;
         this.name = name;
         this.description = description;
         this.stock = stock;
-        this.onSale = onSale;
+        this.onSale = true;
         this.price = price;
+        this.image = "@{images/Phone.jpeg}";
     }
 }
 
