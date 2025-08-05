@@ -260,3 +260,81 @@ h1[th\:text] {
     font-size: 1.5rem;
     line-height: 1.33;
 }
+
+/* Calculator */
+
+.calcHeading{
+    font-weight: bold;
+    color: #C44900;
+    font-size: large;
+}
+.calcCaption{
+    color:gray;
+}
+.errorMessage{
+    color:rgb(178, 6, 6);
+    font-size: small;
+}
+
+
+
+
+
+
+.homeHeading {
+    color: #080708;
+    font-weight: bold;
+    font-size: 30px;
+}
+.homeGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+#calcButton {
+    background-color: #33ba49;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color:#053f14;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 25px;
+}
+
+/* Calculator */
+
+.calcHeading{
+    font-weight: bold;
+    color: #C44900;
+    font-size: large;
+}
+.calcCaption{
+    color:gray;
+    font-size: 1.125em;
+}
+.errorMessage{
+    color:rgb(178, 6, 6);
+    font-size: small;
+}
+#calcInputSection{
+    margin-left: 3%;
+    flex: 1;
+}
+#calcInfoSection{
+    flex: 1;
+}
+#calcInfoSection h4{
+    font-weight: bold;
+    color: black;
+}
+#calcInfoSection h4 span{
+    font-weight: bold;
+    color: #C44900;
+}
+#calcGroup{
+    display: flex;
+    justify-content: space-between;
+}

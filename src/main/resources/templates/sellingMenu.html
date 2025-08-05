@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <title>Bob</title>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+
+
+<div style="text-align: center;">
+  <br>
+  <h1>Logged In</h1>
+  <h4 class = calcCaption>Creating an online product within Squirrel</h4>
+  <div id = calcGroup>
+    <section id = calcInputSection>
+      <form th:action="@{/checkLogIn}" method="post" class="signin-form">
+      <h4 class = calcHeading>The name of your product.</h4>
+      <input class = inputBox type="text"  placeholder = "JBL Headphones 750NC" id="number1"/><br>
+      <h4 id = productError class = errorMessage></h4>
+      <h4 class = calcHeading>The price for each product.</h4>
+      <input class = inputBox type="text"  placeholder = "Price (£)" id="number2"/><br>
+      <h4 id = priceError class = errorMessage></h4>
+      <h4 class = calcHeading>The total stock of your product.</h4>
+      <input class = inputBox type="text"  placeholder = "1 - 50" id="number3"/><br>
+      <h4 id = stockError class = errorMessage></h4>
+      <h4 class = calcHeading>Please upload an image that is 400x400 pixels to display on the Marketplace. </h4>
+      <input class = inputBox type="file" placeholder = "" id="number4"/><br>
+      <h4 id = imageError class = errorMessage></h4><input class="inputBox" type="submit" value="Create"/>
+      </form>
+    </section>
+    <section id = calcInfoSection>
+
+
+    </section>
+  </div>
+</div>
+<h4 th:text="${errorMessage}" style="color: #C44900"></h4>
+<script src="../static/js/jquery-3.7.1.min.js"></script>
+</body>
+<div th:replace="~{footer :: footer}"></div>
+</html>

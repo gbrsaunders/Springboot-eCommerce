@@ -34,7 +34,21 @@ public class MarketplaceController {
             return "redirect:/login";
         }
         redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+        System.out.println("Redirecting to Marketplace");
         return ("redirect:/marketplace");
+    }
+    @RequestMapping(value = {"/checkHome"})
+    public String checkHome(@RequestParam String username, RedirectAttributes redirectAttributes) {
+        System.out.println("Check Home");
+        Account currentAccount = logInService.checkLogInUsername(username);
+        if (currentAccount == null) {
+            log.error("Account cannot be found for Home");
+            return "redirect:/login";
+        }
+        redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+        System.out.println("Redirecting to Home");
+        System.out.println(currentAccount);
+        return "redirect:/home";
     }
 }
 

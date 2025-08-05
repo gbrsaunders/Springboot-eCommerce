@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Account;
 import com.example.demo.model.Array;
+import com.example.demo.model.Item;
 import com.example.demo.service.LogInService;
+import com.example.demo.service.ShoppingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,14 @@ public class SellingController {
     }
 
     @RequestMapping(value = {"/selling"})
-    public String displaySellingPage(Model model) {
-        Account currentAccount = (Account) model.asMap().get("currentAccount");
+    public String displaySellingPage(@ModelAttribute("currentAccount") Account currentAccount, Model model) {
         System.out.println("Logged in / " + currentAccount.isLoggedin());
         System.out.println(currentAccount);
+        Item[] sellingList = currentAccount.getSellingList();
         model.addAttribute("currentAccount", currentAccount);
-        model.addAttribute("sellingList", currentAccount.getSellingList());
-        return "selling.html";
+        model.addAttribute("shoppingCartList", ShoppingService.listSplit(sellingList));
+
+        return "shoppingcart.html";
     }
     @RequestMapping(value = {"/checkSelling"})
     public String checkSelling(@RequestParam String username, RedirectAttributes redirectAttributes) {
@@ -38,6 +41,12 @@ public class SellingController {
         }
         redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
         return ("redirect:/selling");
+    }
+    @RequestMapping(value = {"/sellingMenu"})
+    public String displaySellingPage(@RequestParam String username, Model model) {
+        Account currentAccount = logInService.checkLogInUsername(username);
+        model.addAttribute("currentAccount", currentAccount);
+        return "sellingMenu.html";
     }
 
 

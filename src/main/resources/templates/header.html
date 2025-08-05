@@ -5,11 +5,24 @@
     <title>Title</title>
 </head>
 <header>
-    <section class = mainGroup>
-        <a th:href="@{/home}" class = navbutton>Home</a>
-        <a th:href="@{/login}" class = navbutton>Log In</a>
-        <a th:href="@{/signup}" class = navbutton>Sign Up</a>
-        <a th:href="@{/marketplace}" class = navbutton>Marketplace</a>
+    <section class="mainGroup" th:if="${currentAccount} != null">
+        <form th:action="@{/checkHome}" method="POST">
+            <input type="hidden" th:value="${currentAccount.username}" name="username" />
+            <input type="hidden" th:value="${currentAccount.password}" name="password" />
+            <button type="submit" class="navbutton">Home</button>
+        </form>
+        <form th:action="@{/checkMarketplace}" method="POST" >
+            <input type="hidden" th:value="${currentAccount.username}" name="username" />
+            <input type="hidden" th:value="${currentAccount.password}" name="password" />
+            <button type="submit" class="navbutton">Marketplace</button>
+        </form>
+        <a th:href="@{/signout}" class="navbutton">Sign Out</a>
+    </section>
+    <section class="mainGroup" th:if="${currentAccount} == null">
+        <a th:href="@{/home}" class="navbutton">Home</a>
+        <a th:href="@{/login}" class="navbutton">Log In</a>
+        <a th:href="@{/signup}" class="navbutton">Sign Up</a>
+        <a th:href="@{/marketplace}" class="navbutton">Marketplace</a>
     </section>
 </header>
 </html>

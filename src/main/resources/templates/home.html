@@ -26,6 +26,10 @@
         <button type="submit" class="button">Selling</button>
         <input type="hidden" th:field="${currentAccount.username}" name="username"/>
     </form>
+    <form th:action="@{/sellingMenu}" method="post">
+        <button type="submit" class="button">Create a product</button>
+        <input type="hidden" th:field="${currentAccount.username}" name="username"/>
+    </form>
 
 </div>
 <script src="../static/js/jquery-3.7.1.min.js"></script>
