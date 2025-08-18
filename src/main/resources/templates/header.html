@@ -6,16 +6,8 @@
 </head>
 <header>
     <section class="mainGroup" th:if="${currentAccount} != null">
-        <form th:action="@{/checkHome}" method="POST">
-            <input type="hidden" th:value="${currentAccount.username}" name="username" />
-            <input type="hidden" th:value="${currentAccount.password}" name="password" />
-            <button type="submit" class="navbutton">Home</button>
-        </form>
-        <form th:action="@{/checkMarketplace}" method="POST" >
-            <input type="hidden" th:value="${currentAccount.username}" name="username" />
-            <input type="hidden" th:value="${currentAccount.password}" name="password" />
-            <button type="submit" class="navbutton">Marketplace</button>
-        </form>
+        <a th:href="@{'/checkHome?username=' + ${currentAccount.username} + '&password=' + ${currentAccount.password}}" class="navbutton">Home</a>
+        <a th:href="@{'/checkMarketplace?username=' + ${currentAccount.username} + '&password=' + ${currentAccount.password}}" class="navbutton">Marketplace</a>
         <a th:href="@{/signout}" class="navbutton">Sign Out</a>
     </section>
     <section class="mainGroup" th:if="${currentAccount} == null">

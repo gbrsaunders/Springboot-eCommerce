@@ -29,7 +29,7 @@ public class Account {
 
     @Setter
     @Getter
-    private boolean loggedin = false;
+    private boolean loggedin;
 
     public enum type{
         ADMIN,

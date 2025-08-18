@@ -67,11 +67,26 @@ header a.active {
     font-weight: bold;
     border-radius: 25px;
     background-color: #FDB833;
-    padding: 1%;
+    text-align: center;
     color:#C44900;
     position: relative;
     transition: 0.3s;
     text-decoration: none;
+    border-style: none;
+}
+.navbutton2{
+    padding: 10%;
+    margin-right: 5%;
+    font-size: 130%;
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: #FDB833;
+    text-align: center;
+    color:#C44900;
+    position: relative;
+    transition: 0.3s;
+    text-decoration: none;
+    border-style: none;
 }
 .mainGroup {
     background-color: #FDB833;

@@ -51,10 +51,13 @@ public class LogInController {
     }
     @GetMapping("/path")
     public String getPath(@RequestParam("username") String username, @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
-        // Process the parameters
+        /*
         Account currentAccount = logInService.checkLogInUsername(username);
         currentAccount = logInService.checkLogIn(currentAccount);
         redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+        */
+         System.out.println(username);
+         System.out.println(password);
         return "bob";
     }
 }

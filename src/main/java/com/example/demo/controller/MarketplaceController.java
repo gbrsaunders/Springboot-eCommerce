@@ -38,7 +38,7 @@ public class MarketplaceController {
         return ("redirect:/marketplace");
     }
     @RequestMapping(value = {"/checkHome"})
-    public String checkHome(@RequestParam String username, RedirectAttributes redirectAttributes) {
+    public String checkHome(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
         System.out.println("Check Home");
         Account currentAccount = logInService.checkLogInUsername(username);
         if (currentAccount == null) {

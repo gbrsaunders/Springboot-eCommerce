@@ -73,7 +73,7 @@ public class ShoppingController {
                           currentAccount.setShoppingList(shoppingCartList);
                           redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
                           System.out.println("AddToCart Username:" + currentAccount.getUsername());
-                          return ("redirect:/shoppingCart");
+                          return ("redirect:/marketplace");
                         }
                   }
 
