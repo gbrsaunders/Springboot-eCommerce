@@ -57,25 +57,14 @@ header a.active {
     background-color: #C44900;
     color:#FDB833;
     transform: scale(1.1);
-    /* Second copy of icons which are owned by Icon8, this will change the color of the icons*/
 
+}
+.navbutton:hover #shoppingCartIcon{
+    background-image: url(../images/icons/YellowShoppingCartIconSmall.png);
+    background-color: #C44900;
 }
 /* Button on header, and percentages are used to create more accessbility with smaller devices*/
 .navbutton{
-    margin-right: 5%;
-    font-size: 130%;
-    font-weight: bold;
-    border-radius: 25px;
-    background-color: #FDB833;
-    text-align: center;
-    color:#C44900;
-    position: relative;
-    transition: 0.3s;
-    text-decoration: none;
-    border-style: none;
-}
-.navbutton2{
-    padding: 10%;
     margin-right: 5%;
     font-size: 130%;
     font-weight: bold;
@@ -352,4 +341,17 @@ h1[th\:text] {
 #calcGroup{
     display: flex;
     justify-content: space-between;
+}
+.icons{
+    background-color: #FDB833;
+    margin-top: 2px;
+    margin-right: 5px;
+    float: left;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
+}
+
+#shoppingCartIcon{
+    background-image: url(../images/icons/OrangeShoppingCartIconSmall.png);
 }
