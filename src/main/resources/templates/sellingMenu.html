@@ -16,19 +16,25 @@
   <h4 class = calcCaption>Creating an online product within Squirrel</h4>
   <div id = calcGroup>
     <section id = calcInputSection>
-      <form th:action="@{/checkLogIn}" method="post" class="signin-form">
-      <h4 class = calcHeading>The name of your product.</h4>
-      <input class = inputBox type="text"  placeholder = "JBL Headphones 750NC" id="number1"/><br>
-      <h4 id = productError class = errorMessage></h4>
-      <h4 class = calcHeading>The price for each product.</h4>
-      <input class = inputBox type="text"  placeholder = "Price (£)" id="number2"/><br>
-      <h4 id = priceError class = errorMessage></h4>
-      <h4 class = calcHeading>The total stock of your product.</h4>
-      <input class = inputBox type="text"  placeholder = "1 - 50" id="number3"/><br>
-      <h4 id = stockError class = errorMessage></h4>
-      <h4 class = calcHeading>Please upload an image that is 400x400 pixels to display on the Marketplace. </h4>
-      <input class = inputBox type="file" placeholder = "" id="number4"/><br>
-      <h4 id = imageError class = errorMessage></h4><input class="inputBox" type="submit" value="Create"/>
+      <form th:action="@{/checkItem}" method="post" class="signin-form" enctype="multipart/form-data" >
+        <input type = "hidden" name = "username" th:value="${currentAccount.username}">
+        <h4 class = calcHeading>The name of your product.</h4>
+        <input class = inputBox type="text" name="name"  placeholder = "JBL Headphones 750NC" id="number1"/><br>
+        <h4 id = productError class = errorMessage></h4>
+        <h4 class = calcHeading>The description of the product.</h4>
+        <input class = inputBox type="text"  name ="description" placeholder = "A headphone from JBL brand..." id="number2"/><br>
+        <h4 id = descriptionError class = errorMessage></h4>
+        <h4 class = calcHeading>The price for each product.</h4>
+        <input class = inputBox type="text"  name ="price" placeholder = "Price (£)" id="number3"/><br>
+        <h4 id = priceError class = errorMessage></h4>
+        <h4 class = calcHeading>The total stock of your product.</h4>
+        <input class = inputBox type="text" name = "stock"  placeholder = "1 - 50" id="number4"/><br>
+        <h4 id = stockError class = errorMessage></h4>
+        <h4 class = calcHeading>Please upload an image that is 400x400 pixels to display on the Marketplace. </h4>
+        <input class = inputBox type="file" name = "file" accept=".jpg,.jpeg,.png" placeholder = "" id="number5"/><br>
+        <h4 id = imageError class = errorMessage></h4><input class="inputBox" type="submit" value="Create"/>
+        <h4 class = calcHeading>Do you want to put it on sale? </h4>
+        <input class = inputBox type="checkbox" placeholder = "" id="number6"/><br>
       </form>
     </section>
     <section id = calcInfoSection>

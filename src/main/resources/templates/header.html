@@ -12,10 +12,8 @@
         <a th:href="@{'/checkShopping?username=' + ${currentAccount.username} + '&password=' + ${currentAccount.password}}"   class="navbutton"> <span class = icons id="shoppingCartIcon"></span></a>
     </section>
     <section class="mainGroup" th:if="${currentAccount} == null">
-        <a th:href="@{/home}" class="navbutton">Home</a>
         <a th:href="@{/login}" class="navbutton">Log In</a>
         <a th:href="@{/signup}" class="navbutton">Sign Up</a>
-        <a th:href="@{/marketplace}" class="navbutton">Marketplace</a>
     </section>
 </header>
 </html>

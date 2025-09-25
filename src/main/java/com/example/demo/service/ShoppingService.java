@@ -30,10 +30,7 @@ public class ShoppingService {
 
      */
     public static List<List<Item>> listSplit(Item[] itemList) {
-        // Create a new list to store non-null items
         List<Item> notNullItems = new ArrayList<>();
-
-        // Filter out null items
         for (Item item : itemList) {
             if (item != null) {
                 notNullItems.add(item);

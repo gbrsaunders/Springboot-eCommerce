@@ -224,8 +224,12 @@ h1[th\:text] {
 }
 .itemImage{
     margin: 0;
-    max-width: 100%;
-    height: auto;
+    width: 400px;
+    height: 400px;
+}
+.itemGroup .itemImage {
+    width: 100px;
+    height: 100px;
 }
 .cartButton {
     text-align: center;

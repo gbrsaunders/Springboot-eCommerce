@@ -18,7 +18,7 @@
 <div th:if="${not #lists.isEmpty(shoppingCartList)}">
   <div th:each="group : ${shoppingCartList}" class="itemView">
     <div th:each="item : ${group}" class="itemGroup">
-      <img th:src="@{images/BearPicture.jpg}" class="itemImage" alt="A bear">
+      <img th:src="@{/images/Picture/{id}.jpg(id=${item.ID})}" class="itemImage" alt="A bear">
       <h5 th:text="${item.name}"></h5>
       <h4 th:text="${'£ '} + ${item.price}"></h4>
     </div>

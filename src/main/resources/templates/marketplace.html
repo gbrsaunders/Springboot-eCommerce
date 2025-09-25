@@ -20,7 +20,7 @@
 <div th:if="${not #lists.isEmpty(marketplaceList)}">
   <div th:each="group : ${marketplaceList}" class="itemView">
     <div th:each="item : ${group}" class="itemGroup">
-      <img th:src="${item.image}" class="itemImage" alt="A bear">
+      <img th:src="@{static/images/Picture/{id}.jpg(id=${item.ID})}" class="itemImage" alt="A bear">
       <h5 th:text="${item.name}"></h5>
       <h4 th:text="${'£ '} + ${item.price}"></h4>
       <form th:action="@{/addToCart}" method="post">

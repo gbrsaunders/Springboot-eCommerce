@@ -26,6 +26,7 @@ public class ItemController {
                 return "redirect:/marketplace";
             }
             if(item.ID == ItemID){
+                System.out.println(item.ID);
                 targetItem = item;
                 break;
             }
