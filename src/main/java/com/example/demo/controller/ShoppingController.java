@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 import static com.example.demo.service.ShoppingService.listSplit;
 
 @Slf4j
@@ -27,12 +29,10 @@ public class ShoppingController {
 
     @RequestMapping(value = {"/shoppingCart"})
     public String displayLogInPage(@ModelAttribute("currentAccount") Account currentAccount, Model model) {
-        System.out.println("Logged in / " + currentAccount.isLoggedin());
         System.out.println(currentAccount);
-        Item[] shoppingCartList = currentAccount.getShoppingList();
+        List<Item> shoppingCartList = currentAccount.getShoppingList();
         model.addAttribute("currentAccount", currentAccount);
         model.addAttribute("shoppingCartList", ShoppingService.listSplit(shoppingCartList));
-
         return "shoppingcart.html";
     }
     @RequestMapping(value = {"/checkShopping"})
@@ -64,19 +64,12 @@ public class ShoppingController {
                   return ("redirect:/marketplace");
               }
               else{
-                  Item[] shoppingCartList = currentAccount.getShoppingList();
-                  System.out.println(shoppingCartList.length);
-                  for(int i = 0; i < shoppingCartList.length; i++){
-                      System.out.println(i);
-                      if(shoppingCartList[i] == null){
-                          shoppingCartList[i] = chosenItem;
-                          currentAccount.setShoppingList(shoppingCartList);
-                          redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
-                          System.out.println("AddToCart Username:" + currentAccount.getUsername());
-                          return ("redirect:/marketplace");
-                        }
-                  }
-
+                  List<Item> shoppingCartList = currentAccount.getShoppingList();
+                  shoppingCartList.add(item);
+                  currentAccount.setShoppingList(shoppingCartList);
+                  redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
+                  System.out.println("AddToCart Username:" + currentAccount.getUsername());
+                  return ("redirect:/marketplace");
               }
           }
         }

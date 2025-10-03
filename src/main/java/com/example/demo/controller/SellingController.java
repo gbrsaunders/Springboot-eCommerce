@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -33,9 +34,8 @@ public class SellingController {
 
     @RequestMapping(value = {"/selling"})
     public String displaySellingPage(@ModelAttribute("currentAccount") Account currentAccount, Model model) {
-        System.out.println("Logged in / " + currentAccount.isLoggedin());
         System.out.println(currentAccount);
-        Item[] sellingList = currentAccount.getSellingList();
+        List<Item> sellingList = currentAccount.getSellingList();
         model.addAttribute("currentAccount", currentAccount);
         model.addAttribute("shoppingCartList", ShoppingService.listSplit(sellingList));
 

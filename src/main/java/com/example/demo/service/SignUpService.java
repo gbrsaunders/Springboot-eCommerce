@@ -27,25 +27,19 @@ public class SignUpService {
         }
 
         for (Account acc : Array.getAccountList()) {
-            if (acc == null) {
-                break;
-            } else if (acc.getUsername().equals(account.getUsername())) {
+            if (acc.getUsername().equals(account.getUsername())) {
                 log.info("Username already exists.");
                 return "Username already exists.";
-            } else if (acc.getEmail().equals(account.getEmail())) {
+            }
+            else if (acc.getEmail().equals(account.getEmail())) {
                 log.info("Email address already exists.");
                 return "Email address already exists.";
             }
         }
-        for (int i = 0; i < Array.getAccountList().length; i++) {
-            if (Array.getAccountList()[i] == null) {
-                Array.getAccountList()[i] = account;
-                log.info("Account saved successfully.");
-                System.out.println(account);
-                return "Account saved successfully";
-            }
-        }
-    return "Account saved unsuccessfully";
+        System.out.println("Saving account info...");
+        Array.getAccountList().add(account);
+        return "Account saved successfully";
     }
+
 
 }

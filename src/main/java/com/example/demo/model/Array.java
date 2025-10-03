@@ -4,11 +4,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Array {
     @Getter @Setter
-    private static Account[] AccountList = new Account[10];
+    private static List<Account>  AccountList = new ArrayList<>();
     @Getter @Setter
-    private static Item[] Marketplace = new Item[100];
+    private static List<Item> Marketplace = new ArrayList<>();
 
 }

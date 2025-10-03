@@ -29,7 +29,7 @@ public class ShoppingService {
     }
 
      */
-    public static List<List<Item>> listSplit(Item[] itemList) {
+    public static List<List<Item>> listSplit(List<Item> itemList) {
         List<Item> notNullItems = new ArrayList<>();
         for (Item item : itemList) {
             if (item != null) {

@@ -38,11 +38,9 @@ public class LogInController {
             return "redirect:/login";
         } else if (currentAccount.getAccountType() == Account.type.USER) {
             redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
-            currentAccount.setLoggedin(true);
             return "redirect:/home";
         } else if (currentAccount.getAccountType() == Account.type.ADMIN) {
             redirectAttributes.addFlashAttribute("currentAccount", currentAccount);
-            currentAccount.setLoggedin(true);
             return "redirect:/admin";
         }
         log.error("Very weird exception");
