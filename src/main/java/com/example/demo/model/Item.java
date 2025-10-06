@@ -1,14 +1,15 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "ITEM")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     public static int total = 0;
     @Id
@@ -36,8 +37,5 @@ public class Item {
         total = total + 1;
     }
 
-    public Item() {
-
-    }
 }
 

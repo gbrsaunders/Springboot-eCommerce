@@ -3,10 +3,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.CollectionId;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +12,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "ACCOUNT")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
-    public Account() {
-    }
     @Id
     @Column(name = "USER_ID")
     private int ID;
