@@ -1,18 +1,30 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Array;
 import com.example.demo.model.Item;
-import com.example.demo.service.ShoppingService;
+import com.example.demo.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ItemController {
+    @Autowired
+    private ItemService itemService;
+
+    @PostMapping("/addItem")
+    public Item postDetails(@RequestBody Item item){
+        return itemService.saveDetails(item);
+    }
+    @GetMapping("/getItemByID/{ID}")
+    public Item fetchDetailsByID(@PathVariable int ID) {
+        return itemService.getItemByID(ID);
+    }
+    @PutMapping("/updateItem")
+    public Item updateDetails(@RequestBody Item item) {
+        return itemService.updateDetail(item);
+    }
+
 
     @RequestMapping("/item")
     public String getItem(@RequestParam int itemID, @RequestParam String username ) {
@@ -20,18 +32,13 @@ public class ItemController {
     }
     @GetMapping("/item/{ItemID}")
     public String getItemPage(Model model, @PathVariable int ItemID ) {
-        Item targetItem = null;
-        for(Item item : Array.getMarketplace()){
-            if(item.name == null){
-                return "redirect:/marketplace";
-            }
-            if(item.ID == ItemID){
-                System.out.println(item.ID);
-                targetItem = item;
-                break;
-            }
+        Item targetItem = itemService.getItemByID(ItemID);
+        if (targetItem != null) {
+            model.addAttribute("item", targetItem);
+            return "itempage.html";
         }
-        model.addAttribute("item", targetItem);
-        return "itempage.html";
+        else{
+            return "redirect:/marketplace";
+        }
     }
 }

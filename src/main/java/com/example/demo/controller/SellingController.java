@@ -1,19 +1,17 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Account;
-import com.example.demo.model.Array;
 import com.example.demo.model.Item;
-import com.example.demo.service.LogInService;
-import com.example.demo.service.ShoppingService;
+import com.example.demo.service.AccountService;
+import com.example.demo.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.server.DelegatingServerHttpResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
@@ -26,24 +24,24 @@ import java.util.List;
 @Slf4j
 @Controller
 public class SellingController {
-    private final LogInService logInService;
-
-    public SellingController(LogInService logInService) {
-        this.logInService = logInService;
-    }
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(value = {"/selling"})
     public String displaySellingPage(@ModelAttribute("currentAccount") Account currentAccount, Model model) {
         System.out.println(currentAccount);
+        currentAccount = accountService.getAccountByID(currentAccount.getID());
         List<Item> sellingList = currentAccount.getSellingList();
         model.addAttribute("currentAccount", currentAccount);
-        model.addAttribute("shoppingCartList", ShoppingService.listSplit(sellingList));
+        model.addAttribute("shoppingCartList", itemService.listSplit(sellingList));
 
         return "shoppingcart.html";
     }
     @RequestMapping(value = {"/checkSelling"})
     public String checkSelling(@RequestParam String username, RedirectAttributes redirectAttributes) {
-        Account currentAccount = logInService.checkLogInUsername(username);
+        Account currentAccount = accountService.checkLogInUsername(username);
         if(currentAccount == null) {
             log.error("Account cannot be found for Shopping Cart");
             return "redirect:/login";
@@ -53,16 +51,15 @@ public class SellingController {
     }
     @RequestMapping(value = {"/sellingMenu"})
     public String displaySellingPage(@RequestParam String username, Model model) {
-        Account currentAccount = logInService.checkLogInUsername(username);
+        Account currentAccount = accountService.checkLogInUsername(username);
         model.addAttribute("currentAccount", currentAccount);
         return "sellingMenu.html";
     }
     @RequestMapping(value = {"/checkItem"})
-    public String checkItem(@RequestParam("file") MultipartFile file, @RequestParam String username, @RequestParam String name, @RequestParam String price, @RequestParam String description, @RequestParam String stock, RedirectAttributes redirectAttributes, Model model) {
-        Account currentAccount = logInService.checkLogInUsername(username);
-        int ID = Item.total;
+    public String checkItem(@RequestParam("file") MultipartFile file, @RequestParam String username, @RequestParam String name, @RequestParam String price, @RequestParam String description, @RequestParam String stock, RedirectAttributes redirectAttributes, Model model) throws IOException {
+        Account currentAccount = accountService.checkLogInUsername(username);
         String path = "src/main/resources/static/images/Picture";
-        String fileName = ID + ".jpg";
+        String fileName = currentAccount.getID() + ".jpg";
 
         System.out.println("Item: " + name + " " + price + " " + description + " " + stock);
         try{
@@ -81,8 +78,9 @@ public class SellingController {
             int intStock = Integer.parseInt(stock);
             int intPrice = Integer.parseInt(price);
             Item item = new Item(name,description,intStock,intPrice);
+            itemService.addImageToItem(item, file);
             currentAccount.addSellingItem(item);
-            Item.total++;
+            accountService.saveDetails(currentAccount);
             System.out.println("Success");
         }
 

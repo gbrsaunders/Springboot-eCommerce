@@ -9,23 +9,23 @@
 <body>
 <div th:replace="~{header :: header}"></div>
 
-<div style="text-align: center;">
-    <br>
-    <h1>Sign Up</h1>
-    <h4 th:text="${errorMessage}" style="color: #C44900"></h4>
-    <form th:action="@{/saveSignUp}" method="post" class="signin-form">
-    <h4 class="calcHeading">Username:</h4>
-    <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username" required = "required"/><br>
+<div class="backgroundContainer">
+    <div class="loginPopup">
+        <h1>Sign Up</h1>
+        <h4 th:text="${errorMessage}" class="errorMessage"></h4>
+        <form th:action="@{/saveSignUp}" method="post" class="signin-form">
+            <h4 class="loginHeading">Username:</h4>
+            <input class="inputBox" name="username" type="text" placeholder="Eg. checkerslover523" id="username" required = "required"/><br>
 
-    <h4 class="calcHeading">Password:</h4>
-    <input class="inputBox" name="password" type="password" id="password"  required = "required"/><br>
-    
-    <h4 class="calcHeading">Email:</h4>
-    <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email" required = "required"/><br>
-    <input class="inputBox" type="submit" value="Submit"/>
-</form>
+            <h4 class="loginHeading">Password:</h4>
+            <input class="inputBox" name="password" type="password" id="password"  required = "required"/><br>
+
+            <h4 class="loginHeading">Email:</h4>
+            <input class="inputBox" name="email" type="text" placeholder="Eg. checkerslover523@gmail.com" id="email" required = "required"/><br>
+            <input class="inputBox" type="submit" value="Sign Up" style="background-color: #333; color: #ededed"/>
+        </form>
+    </div>
 </div>
-<script src="../static/js/jquery-3.7.1.min.js"></script>
 </body>
 <div th:replace="~{footer :: footer}"></div>
 </html>
