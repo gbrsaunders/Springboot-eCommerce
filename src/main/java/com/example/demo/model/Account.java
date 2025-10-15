@@ -67,12 +67,14 @@ public class Account {
         item.getShoppers().add(this);
     }
 
-    public void removeShoppingItem(Item item) {
-        if (shoppingCart.removeIf(i -> matchesItem(i, item))) {
-            item.getShoppers().remove(this);
-            System.out.println("Successfully removed item.");
-        } else {
-            System.out.println("Failed removing the item.");
+    public void removeShoppingItem(Item item){
+        int itemID = item.getId();
+        for(Item currentItem : shoppingCart){
+            if (currentItem.getId() == itemID){
+                shoppingCart.remove(currentItem);
+                item.getShoppers().remove(this);
+                return;
+            }
         }
     }
 
@@ -81,7 +83,6 @@ public class Account {
         sellingList.add(item);
 
     }
-
     public void removeSellingItem(Item item) {
         if (sellingList.removeIf(i -> matchesItem(i, item))) {
             System.out.println("Successfully removed item.");

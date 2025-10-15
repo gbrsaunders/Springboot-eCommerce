@@ -37,7 +37,7 @@ public class SellingController {
         model.addAttribute("currentAccount", currentAccount);
         model.addAttribute("shoppingCartList", itemService.listSplit(sellingList));
 
-        return "shoppingcart.html";
+        return "sellingList.html";
     }
     @RequestMapping(value = {"/checkSelling"})
     public String checkSelling(@RequestParam String username, RedirectAttributes redirectAttributes) {

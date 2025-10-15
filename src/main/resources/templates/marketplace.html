@@ -10,8 +10,6 @@
 <div th:replace="~{header :: header}"></div>
   <br>
   <h1 class="webTitle">Marketplace</h1>
-  <h4 th:text="${currentAccount.username}"></h4>
-  <h4 th:text="${currentAccount.email}"></h4>
   <div th:if="${not #lists.isEmpty(marketplaceList)}">
     <div th:each="group : ${marketplaceList}" class="itemView">
       <div th:each="item : ${group}" class="itemGroup">
